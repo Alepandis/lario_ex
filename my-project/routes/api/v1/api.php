@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/user')->group(function(){
     Route::post('/login', 'App\Http\Controllers\LoginController@login');
     Route::middleware('auth:api')->get('/all', 'App\Http\Controllers\UserController@all');
-    Route::post('/publish', 'App\Http\Controllers\PhrasesController@create');
+    Route::post('/publish', 'App\Http\Controllers\PhrasesController@createPhrase');
+    Route::get('/filter_phrases_date/{date}', 'App\Http\Controllers\PhrasesController@getPhrasesDate');
+    Route::post('/comment', 'App\Http\Controllers\CommentsController@createComment');
 });
 
 /* Route::group([

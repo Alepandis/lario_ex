@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('phrases', function (Blueprint $table) {
             $table->id();
-            $table->name();
-            $table->phrase();
-            $table->state();
-            $table->timestamps('created_at')->nullable();
-            $table->timestamps('modified_at')->nullable();
+            $table->text('phrase');
+            $table->string('author')->nullable();
+            $table->integer('comment_id');
+            $table->integer('state_id');
+            $table->timestamps();
+            $table->foreign('comment_id')->references('id')->on('comments');
+            $table->foreign('state_id')->references('id')->on('states');
         });
     }
 
